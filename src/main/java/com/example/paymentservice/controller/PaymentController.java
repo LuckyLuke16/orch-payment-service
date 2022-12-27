@@ -20,10 +20,10 @@ public class PaymentController implements PaymentOperations{
         this.paymentService = paymentService;
     }
 
-    public void fulfillPayment(String userId, String paymentMethod, List<ItemDetailDTO> itemsToPay) {
+    public Long fulfillPayment(String userId, String paymentMethod, List<ItemDetailDTO> itemsToPay) {
         try {
             Method method = Method.valueOf(paymentMethod);
-            this.paymentService.makePayment(userId, method, itemsToPay);
+            return this.paymentService.makePayment(userId, method, itemsToPay);
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } catch (Exception e) {

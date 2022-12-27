@@ -12,6 +12,6 @@ import java.util.List;
 public interface PaymentOperations {
 
     @PostMapping
-    void fulfillPayment(@RequestParam String userId, @RequestParam String paymentMethod, @RequestBody List<ItemDetailDTO> itemsToPay);
+    Long fulfillPayment(@RequestParam String userId, @RequestParam String paymentMethod, @RequestBody List<ItemDetailDTO> itemsToPay);
 
 }

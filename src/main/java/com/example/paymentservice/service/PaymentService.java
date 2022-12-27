@@ -32,15 +32,14 @@ public class PaymentService {
     }
 
 
-    public String makePayment(String userId, Method paymentMethod, List<ItemDetailDTO> itemsToPay) {
+    public Long makePayment(String userId, Method paymentMethod, List<ItemDetailDTO> itemsToPay) {
         try {
             float totalPrice = this.calculatePrice(itemsToPay);
             this.redirectToPaymentProvider(paymentMethod, totalPrice);
-            this.savePayment(userId, totalPrice, paymentMethod);
+            return this.savePayment(userId, totalPrice, paymentMethod);
         } catch (Exception e) {
             throw new PaymentFailedException(paymentMethod);
         }
-        return null;
     }
 
     public long savePayment(String userId, float totalPrice, Method paymentMethod) {
